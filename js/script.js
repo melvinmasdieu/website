@@ -32,13 +32,13 @@ $(document).ready(function () {
                     });
                 }
                 else {
-                    $.noty.defaults = {
+                    var n = noty({
                         layout: 'BottomRight',
                         theme: 'relax', // or 'relax'
                         type: 'warning',
                         text: 'Erreur de connexion, login ou mot de passe incorrect !',
                         timeout: 500
-                    };
+                    });
                 }
             }
         });
