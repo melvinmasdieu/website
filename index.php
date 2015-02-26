@@ -1,11 +1,13 @@
 <?php
 
-if (isset($_GET["action"])) {
-	$action = $_GET["action"];
+if (isset($_POST["action"])) {
+	$action = $_POST["action"];
 
 	switch($action)
 	{
-		case "connection": include("./lib/c/connexion.php");break;
+		case "connection":
+			include("./lib/c/connexion.php");
+			break;
 		case "load": 
 			if ($_POST != null && $_POST["pageId"] != null)
 			$pageId = $_POST["pageId"];
