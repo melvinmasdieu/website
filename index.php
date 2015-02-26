@@ -1,13 +1,30 @@
 <?php
 
-if (!isset($_POST["pageId"])){
-  $_POST["pageId"] = 1;
-  include("./lib/c/redirect.php");
-  $_POST["pageId"] = 3;
-  include("./lib/c/redirect.php");
-  $_POST["pageId"] = 2;
-  include("./lib/c/redirect.php");
+if (isset($_GET["action"])) {
+	$action = $_GET["action"];
+
+	switch($action)
+	{
+		case "connection": include("./lib/c/connexion.php");break;
+		case "load": 
+			if ($_POST != null && $_POST["pageId"] != null)
+			$pageId = $_POST["pageId"];
+				switch($pageId) {
+
+					case 1: echo file_get_contents("./lib/v/header.html");break;
+					case 2: echo file_get_contents("./lib/v/footer.html");break;
+					case 3: echo file_get_contents("./lib/v/login.html");break;
+					default: break;
+			}
+			break;
+		default: break;
+	}
 }
 else
-  include("./lib/c/redirect.php");
+{
+	echo file_get_contents("./lib/v/header.html");
+	echo file_get_contents("./lib/v/footer.html");
+	echo file_get_contents("./lib/v/login.html");
+}
+
 ?>
