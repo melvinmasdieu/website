@@ -1,13 +1,11 @@
 <?php
 
-if (isset($_GET["action"])) {
-	$action = $_GET["action"];
+if (isset($_POST["action"])) {
+	$action = $_POST["action"];
 
 	switch($action)
 	{
 		case "connection":
-			$_POST["login"] = "bastien";
-			$_POST["password"] = "123456";
 			include("./lib/c/connexion.php");
 			break;
 		case "load": 

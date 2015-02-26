@@ -16,23 +16,30 @@ try {
     die();
 }
 
-$login = $_POST["login"];
-$password = $_POST["password"];
-echo $login."<br/>";
-echo $password."<br/>";
+if (isset($_POST["login"]) && isset($_POST["password"]))
+{
 
-$query = $dbconn->prepare('SELECT password
-    FROM users
-    WHERE username = ?');
-$query->execute(array($login));
+	$login = $_POST["login"];
+	$password = $_POST["password"];
+	echo $login."<br/>";
+	echo $password."<br/>";
 
-$result = $query->fetch(PDO::FETCH_ASSOC);
+	$query = $dbconn->prepare('SELECT password
+	   	FROM users
+	    WHERE username = ?');
+	$query->execute(array($login));
 
-if ($result["password"] == $password){
-	echo "connexion OK";
-}
+	$result = $query->fetch(PDO::FETCH_ASSOC);
+
+	if ($result["password"] == $password){
+		echo "connexion OK";
+	}
+	else {
+		echo "connexion NOK";
+	}
+
 else {
-	echo "connexion NOK";
+	echo "missing login info";
 }
 
 #echo file_get_contents("./lib/v/connected.html");
