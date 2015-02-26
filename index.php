@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($_POST["action"])) {
 	$action = $_POST["action"];
@@ -16,6 +17,21 @@ if (isset($_POST["action"])) {
 					case 1: echo file_get_contents("./lib/v/header.html");break;
 					case 2: echo file_get_contents("./lib/v/footer.html");break;
 					case 3: echo file_get_contents("./lib/v/login.html");break;
+					case 4: if ($_SESSION["connected"] == 1) {						
+								echo file_get_contents("./lib/v/connected.html");
+							}
+							else {
+								echo file_get_contents("./lib/v/403.html");
+							}
+							break;
+					case 5: if ($_SESSION["connected"] == 1) {	
+								session_destroy();					
+								echo file_get_contents("./lib/v/disconnected.html");
+							}
+							else {
+								echo file_get_contents("./lib/v/403.html");
+							}
+							break;
 					default: break;
 			}
 			break;
@@ -25,8 +41,8 @@ if (isset($_POST["action"])) {
 else
 {
 	echo file_get_contents("./lib/v/header.html");
-	echo file_get_contents("./lib/v/footer.html");
 	echo file_get_contents("./lib/v/login.html");
+	echo file_get_contents("./lib/v/footer.html");
 }
 
 ?>
