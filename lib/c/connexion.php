@@ -37,7 +37,7 @@ if (isset($_POST["login"]) && isset($_POST["password"]))
 	else {
 		echo "connexion NOK";
 	}
-
+}
 else {
 	echo "missing login info";
 }
