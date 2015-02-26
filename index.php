@@ -5,7 +5,11 @@ if (isset($_GET["action"])) {
 
 	switch($action)
 	{
-		case "connection": include("./lib/c/connexion.php");break;
+		case "connection":
+			$_POST["login"] = "bastien";
+			$_POST["password"] = "123456";
+			include("./lib/c/connexion.php");
+			break;
 		case "load": 
 			if ($_POST != null && $_POST["pageId"] != null)
 			$pageId = $_POST["pageId"];
