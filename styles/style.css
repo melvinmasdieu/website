@@ -19,7 +19,7 @@ body {
   border-radius: 3px;
   @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
 
-  &:before {
+  :before {
     content: '';
     position: absolute;
     top: -8px; right: -8px; bottom: -8px; left: -8px;
@@ -74,13 +74,13 @@ input[type=text], input[type=password] {
   border-color: #c4c4c4 #d1d1d1 #d4d4d4;
   border-radius: 2px;
   outline: 5px solid #eff4f7;
-  -moz-outline-radius: 3px; // Can we get this on WebKit please?
+  -moz-outline-radius: 3px;
   @include box-shadow(inset 0 1px 3px rgba(black, .12));
 
-  &:focus {
+  :focus {
     border-color: #7dc9e2;
     outline-color: #dceefc;
-    outline-offset: 0; // WebKit sets this to -1 by default
+    outline-offset: 0;
   }
 }
 
@@ -96,11 +96,11 @@ input[type=submit] {
   border-color: #b4ccce #b3c0c8 #9eb9c2;
   border-radius: 16px;
   outline: 0;
-  @include box-sizing(content-box); // Firefox sets this to border-box by default
+  @include box-sizing(content-box);
   @include linear-gradient(top, #edf5f8, #cde5ef);
   @include box-shadow(inset 0 1px white, 0 1px 2px rgba(black, .15));
 
-  &:active {
+  :active {
     background: #cde5ef;
     border-color: #9eb9c2 #b3c0c8 #b4ccce;
     @include box-shadow(inset 0 0 3px rgba(black, .2));
