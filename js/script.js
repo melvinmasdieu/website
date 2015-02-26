@@ -7,12 +7,11 @@ $(document).ready(function () {
         var login = $('#login').val();
         var password = $('#password').val();
         $.ajax({
-            url: ,
+            url: '/lib/connexion.php',
             type: 'POST',
             data: {
-                name: name,
-                mail: mail,
-                role: role
+                'login': login,
+                'password': password
             },
             success: function (response) {
 
@@ -21,23 +20,18 @@ $(document).ready(function () {
     });
 
     //DÉCONNEXION
-    $('#login-form').on('submit', function (e) {
-        e.preventDefault();
+    function deconnexion() {
 
-        var login = $('#login').val();
-        var password = $('#password').val();
         $.ajax({
-            url: ,
+            url: '/lib/deconnexion.php',
             type: 'POST',
             data: {
-                name: name,
-                mail: mail,
-                role: role
+
             },
             success: function (response) {
 
             }
         });
-    });
+    }
 
 });
