@@ -10,11 +10,12 @@ $(document).ready(function () {
             url: '/index.php',
             type: 'POST',
             data: {
+                'action': 'connection',
                 'login': login,
-                'password': password,
-                'pageId': 1
+                'password': password
             },
             success: function (response) {
+                alert(response);
                 var href = $('#details-user');
                 href.text('deconnexion');
                 href.attr('href', "onclick='deconnexion()'");
