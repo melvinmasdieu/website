@@ -14,7 +14,7 @@ $(document).ready(function () {
                 'password': password
             },
             success: function (data) {
-                if(data == "1") {
+                if (data == "1") {
                     $.ajax({
                         url: '/index.php',
                         type: 'POST',
@@ -24,19 +24,28 @@ $(document).ready(function () {
                         },
                         success: function (response) {
                             $('#content').html(response);
-                            var href = $('#signout');
-                            href.attr('onclick', "deconnexion()");
+                            $.ajax({
+                                url: '/index.php',
+                                type: 'POST',
+                                data: {
+                                    'action': 'load',
+                                    'pageId': 7
+                                },
+                                success: function (response) {
+                                    $('#header').html(response);
+                                }
+                            });
                         }
                     });
                 }
                 else {
                     /*noty({
-                        layout: 'bottomRight',
-                        theme: 'relax', // or 'relax'
-                        type: 'warning',
-                        text: 'Erreur de connexion, login ou mot de passe incorrect !',
-                        timeout: 500
-                    });*/
+                     layout: 'bottomRight',
+                     theme: 'relax', // or 'relax'
+                     type: 'warning',
+                     text: 'Erreur de connexion, login ou mot de passe incorrect !',
+                     timeout: 500
+                     });*/
                     alert("Erreur de connexion.");
                 }
             }
@@ -48,17 +57,26 @@ $(document).ready(function () {
 
         $.ajax({
             url: '/index.php',
-                        type: 'POST',
-                        data: {
-                            'action': 'load',
-                            'pageId': 5
+            type: 'POST',
+            data: {
+                'action': 'load',
+                'pageId': 5
             },
             success: function (response) {
-                            $('#content').html(response);                            
-                            var href = $('#signin');
-                            href.attr('onclick', "inscription()"); //Passer par 2 boutons séparés pour inscription/déconnexion
-                        }
-                    });
+                $('#content').html(response);
+                $.ajax({
+                    url: '/index.php',
+                    type: 'POST',
+                    data: {
+                        'action': 'load',
+                        'pageId': 8
+                    },
+                    success: function (response) {
+                        $('#header').html(response);
+                    }
+                });
+            }
+        });
     }
 
     function inscription() {
@@ -71,7 +89,7 @@ $(document).ready(function () {
                 'pageId': 6
             },
             success: function (response) {
-                $('#content').html(response);                            
+                $('#content').html(response);
                 var href = $('#signout');
                 href.attr('onclick', "deconnexion()"); //Passer par 2 boutons séparés pour inscription/déconnexion
             }
