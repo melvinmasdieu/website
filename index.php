@@ -9,6 +9,9 @@ if (isset($_POST["action"])) {
 		case "connection":
 			include("./lib/c/connexion.php");
 			break;
+		case "signup":
+			include("./lib/c/signup.php");
+			break;
 		case "load": 
 			if ($_POST != null && $_POST["pageId"] != null)
 			$pageId = $_POST["pageId"];
@@ -32,6 +35,7 @@ if (isset($_POST["action"])) {
 								echo file_get_contents("./lib/v/403.html");
 							}
 							break;
+					case 6: echo file_get_contents("./lib/v/inscription.html");break;
 					default: break;
 			}
 			break;
@@ -40,9 +44,16 @@ if (isset($_POST["action"])) {
 }
 else
 {
-	echo file_get_contents("./lib/v/header.html");
-	echo file_get_contents("./lib/v/login.html");
-	echo file_get_contents("./lib/v/footer.html");
+	if ($_SESSION["connected"] == 0) {
+		echo file_get_contents("./lib/v/header.html");
+		echo file_get_contents("./lib/v/login.html");
+	}
+	else {
+		echo file_get_contents("./lib/v/headerconnected.html");
+		echo file_get_contents("./lib/v/connected.html");
+	}
+		echo file_get_contents("./lib/v/footer.html");
+	
 }
 
 ?>

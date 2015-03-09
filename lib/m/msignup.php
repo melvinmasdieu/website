@@ -1,7 +1,7 @@
 <?php
 include("./lib/m/mdb.php");
 
-function userConnect($login, $password)
+function userSignUp($login, $password)
 {
 	$dbconn = dbConnect();
 	$retval = 0;
@@ -10,14 +10,9 @@ function userConnect($login, $password)
 		$query = $dbconn->prepare('SELECT password
 		   	FROM users
 		    WHERE username = ?');
-		$query->execute(array($login));
-
-		$result = $query->fetch(PDO::FETCH_ASSOC);
-
-		if ($result["password"] == $password){
-			$_SESSION["connected"] = 1;
-			$retval = 1;
-		}
+		$query = $dbconn->prepare('INSERT INTO users (username, password)
+ 			VALUES (?,?)');
+		$query->execute(array($login, $password));
 	}
 
     return $retval;
