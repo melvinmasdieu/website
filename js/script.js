@@ -14,7 +14,8 @@
                     confirm_disconnect      : 5,
                     sign_up                 : 6,
                     top_menu_connected      : 7,
-                    top_menu_disconnected   : 8
+                    top_menu_disconnected   : 8,
+                    sign_up_confirm         : 9
                 };
                 this.gui = {
                     header                  : $('#header'),
@@ -151,9 +152,9 @@
                     },
                     success: function (data) {
                         if(data == "1") {
-                            alert("vous êtes inscrit !");
+                            tools.show_content(handler.load.sign_up_confirm);
                         } else {
-
+                            alert("problème à l'inscription !");
                         }
                     }
                 });
