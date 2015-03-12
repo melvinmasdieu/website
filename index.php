@@ -1,10 +1,8 @@
 <?php
 session_start();
-//session_destroy();
 
 if (isset($_POST["action"])) {
 	$action = $_POST["action"];
-
 	switch($action)
 	{
 		case "connection":

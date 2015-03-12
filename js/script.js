@@ -22,7 +22,7 @@
                 };
                 this.buttons = {
                     login_form              : $('#login-form'),
-                    sign_in                 : $('#signin'),
+                    sign_in                 : $('#signup'),
                     sign_out                : $('#signout')
                 };
                 this.inputs = {
@@ -35,7 +35,7 @@
 
             },
 
-            event : function() {
+            event : function(tools) {
 
                 this.buttons.login_form.on('submit', function () {
                     tools.connection();
@@ -67,14 +67,14 @@
 
         var tools = {
 
-            connection : function(tools) {
+            connection : function() {
                 $.ajax({
                     url: '/index.php',
                     type: 'POST',
                     data: {
                         'action': 'connection',
-                        'login': handler.inputs.login,
-                        'password': handler.inputs.password
+                        'login': handler.inputs.login.val(),
+                        'password': handler.inputs.password.val()
                     },
                     success: function (data) {
                         if (data == "1") {
