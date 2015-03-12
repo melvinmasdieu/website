@@ -6,7 +6,7 @@ function userConnect($login, $password)
 	$dbconn = dbConnect();
 	$retval = 0;
 
-	if (isset($login) && isset($password)) {
+	if (isset($login) && isset($password) && $login != "" && $password != "") {
 		$query = $dbconn->prepare('SELECT password
 		   	FROM users
 		    WHERE username = ?');
