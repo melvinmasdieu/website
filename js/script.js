@@ -91,7 +91,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('#content').html(response);
                 var href = $('#signout');
-                href.attr('onclick', "deconnexion()"); //Passer par 2 boutons séparés pour inscription/déconnexion
+                href.attr('onclick', "deconnexion()"); 
             }
         });
     }
