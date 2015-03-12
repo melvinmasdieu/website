@@ -37,6 +37,7 @@ if (isset($_POST["action"])) {
 					case 6: echo file_get_contents("./lib/v/inscription.html");break;
 					case 7: echo file_get_contents("./lib/v/topmenuconnected.html");break;
 					case 8: echo file_get_contents("./lib/v/topmenudisconnected.html");break;
+					case 9: echo file_get_contents("./lib/v/signupconfirm.html");break;
 					default: echo file_get_contents("./lib/v/404.html");break;
 			}
 			break;
