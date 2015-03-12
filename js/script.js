@@ -12,7 +12,7 @@
                     login                   : 3,
                     confirm_connect         : 4,
                     confirm_disconnect      : 5,
-                    sign_in                 : 6,
+                    sign_up                 : 6,
                     top_menu_connected      : 7,
                     top_menu_disconnected   : 8
                 };
@@ -22,10 +22,13 @@
                 };
                 this.buttons = {
                     login_form              : $('#login-form'),
-                    sign_in                 : $('#signin'),
+                    sign_up_form            : $('#sign-up-form'),
+                    sign_up                 : $('#signup'),
                     sign_out                : $('#signout')
                 };
                 this.inputs = {
+                    name                    : $('#name'),
+                    email                   : $('#email'),
                     login                   : $('#login'),
                     password                : $('#password')
 
@@ -35,20 +38,24 @@
 
             },
 
-            event : function() {
+            event : function(tools) {
 
                 this.buttons.login_form.on('submit', function () {
                     tools.connection();
                 });
 
-                this.buttons.sign_in.on('keypress', function (e) {
+                this.buttons.sign_up_form.on('submit', function() {
+                    tools.register();
+                });
+
+                this.buttons.sign_up.on('keypress', function (e) {
                     if (e.which == 13) {
-                        tools.sign_in();
+                        tools.sign_up();
                     }
                 });
 
-                this.buttons.sign_in.on('click', function () {
-                    tools.sign_in();
+                this.buttons.sign_up.on('click', function () {
+                    tools.sign_up();
                 });
 
                 this.buttons.sign_out.on('keypress', function (e) {
@@ -67,14 +74,14 @@
 
         var tools = {
 
-            connection : function(tools) {
+            connection : function() {
                 $.ajax({
                     url: '/index.php',
                     type: 'POST',
                     data: {
                         'action': 'connection',
-                        'login': handler.inputs.login,
-                        'password': handler.inputs.password
+                        'login': handler.inputs.login.val(),
+                        'password': handler.inputs.password.val()
                     },
                     success: function (data) {
                         if (data == "1") {
@@ -128,8 +135,28 @@
                 tools.show_header(handler.load.top_menu_disconnected);
             },
 
-            sign_in : function() {
-                tools.show_content(handler.load.sign_in);
+            sign_up : function() {
+                tools.show_content(handler.load.sign_up);
+            },
+
+            register : function() {
+                $.ajax({
+                    url: '/index.php',
+                    type: 'POST',
+                    data: {
+                        'action': 'signup',
+                        'login': handler.inputs.login.val(),
+                        'password': handler.inputs.password.val(),
+                        'email': handler.inputs.email.val()
+                    },
+                    success: function (data) {
+                        if(data == "1") {
+                            alert("vous êtes inscrit !");
+                        } else {
+
+                        }
+                    }
+                });
             }
 
         };
