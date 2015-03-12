@@ -67,7 +67,7 @@
 
         var tools = {
 
-            connection : function() {
+            connection : function(tools) {
                 $.ajax({
                     url: '/index.php',
                     type: 'POST',
