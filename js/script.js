@@ -67,7 +67,7 @@
 
         var tools = {
 
-            connection : function() {
+            connection : function(tools) {
                 $.ajax({
                     url: '/index.php',
                     type: 'POST',
@@ -124,7 +124,7 @@
             },
 
             disconnection : function() {
-                tools.show_content(handler.load.login);
+                tools.show_content(handler.load.confirm_disconnect);
                 tools.show_header(handler.load.top_menu_disconnected);
             },
 
