@@ -7,10 +7,12 @@ function userSignUp($login, $password)
 	$retval = 0;
 
 	if (isset($login) && isset($password)) {
-		$query = $dbconn->prepare('SELECT password
+		$query = $dbconn->prepare('
+			SELECT password
 		   	FROM users
 		    WHERE username = ?');
-		$query = $dbconn->prepare('INSERT INTO users (username, password)
+		$query = $dbconn->prepare('
+			INSERT INTO users (username, password)
  			VALUES (?,?)');
 		$query->execute(array($login, $password));
 	}

@@ -54,6 +54,7 @@ $(document).ready(function () {
 
     //DECONNEXION
     function deconnexion() {
+        alert("OK FONC DECO");
 
         $.ajax({
             url: '/index.php',
@@ -64,6 +65,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 $('#content').html(response);
+                alert("OK DECO");
                 $.ajax({
                     url: '/index.php',
                     type: 'POST',
@@ -73,6 +75,7 @@ $(document).ready(function () {
                     },
                     success: function (response) {
                         $('#header').html(response);
+                        alert ("OK TOPMENU DECO");
                     }
                 });
             }
