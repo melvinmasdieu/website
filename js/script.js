@@ -12,9 +12,10 @@
                     login                   : 3,
                     confirm_connect         : 4,
                     confirm_disconnect      : 5,
-                    sign_in                 : 6,
+                    sign_up                 : 6,
                     top_menu_connected      : 7,
-                    top_menu_disconnected   : 8
+                    top_menu_disconnected   : 8,
+                    sign_up_confirm         : 9
                 };
                 this.gui = {
                     header                  : $('#header'),
@@ -22,10 +23,13 @@
                 };
                 this.buttons = {
                     login_form              : $('#login-form'),
-                    sign_in                 : $('#signup'),
+                    sign_up_form            : $('#sign-up-form'),
+                    sign_up                 : $('#signup'),
                     sign_out                : $('#signout')
                 };
                 this.inputs = {
+                    name                    : $('#name'),
+                    email                   : $('#email'),
                     login                   : $('#login'),
                     password                : $('#password')
 
@@ -41,14 +45,18 @@
                     tools.connection();
                 });
 
-                this.buttons.sign_in.on('keypress', function (e) {
+                this.buttons.sign_up_form.on('submit', function() {
+                    tools.register();
+                });
+
+                this.buttons.sign_up.on('keypress', function (e) {
                     if (e.which == 13) {
-                        tools.sign_in();
+                        tools.sign_up();
                     }
                 });
 
-                this.buttons.sign_in.on('click', function () {
-                    tools.sign_in();
+                this.buttons.sign_up.on('click', function () {
+                    tools.sign_up();
                 });
 
                 this.buttons.sign_out.on('keypress', function (e) {
@@ -128,8 +136,28 @@
                 tools.show_header(handler.load.top_menu_disconnected);
             },
 
-            sign_in : function() {
-                tools.show_content(handler.load.sign_in);
+            sign_up : function() {
+                tools.show_content(handler.load.sign_up);
+            },
+
+            register : function() {
+                $.ajax({
+                    url: '/index.php',
+                    type: 'POST',
+                    data: {
+                        'action': 'signup',
+                        'login': handler.inputs.login.val(),
+                        'password': handler.inputs.password.val(),
+                        'email': handler.inputs.email.val()
+                    },
+                    success: function (data) {
+                        if(data == "1") {
+                            tools.show_content(handler.load.sign_up_confirm);
+                        } else {
+                            alert("problème à l'inscription !");
+                        }
+                    }
+                });
             }
 
         };
