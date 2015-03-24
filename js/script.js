@@ -31,10 +31,11 @@
                     name                    : $('#name'),
                     email                   : $('#email'),
                     login                   : $('#login'),
-                    password                : $('#password')
+                    login_password          : $('#login-password'),
+                    signup_password         : $('#signup-password')
                 };
 
-                this.event(tools)
+                this.event(tools);
 
             },
 
@@ -44,14 +45,20 @@
                     tools.connection();
                 });
 
-                this.inputs.password.on('keypress', function (e) {
+                this.inputs.login_password.on('keypress', function (e) {
                     if (e.which == 13) {
                         tools.connection();
                     }
                 });
 
-                this.buttons.sign_up_form.on('click', function(e) {
+                this.buttons.sign_up_form.on('click', function() {
                     tools.register();
+                });
+
+                this.inputs.signup_password.on('keypress', function (e) {
+                    if (e.which == 13) {
+                        tools.register();
+                    }
                 });
 
                 this.buttons.sign_up.on('keypress', function (e) {
@@ -87,7 +94,7 @@
                     data: {
                         'action': 'connection',
                         'login': handler.inputs.login.val(),
-                        'password': handler.inputs.password.val()
+                        'password': handler.inputs.login_password.val()
                     },
                     success: function (data) {
                         if (data == "1") {
@@ -155,7 +162,7 @@
                         'action': 'signup',
                         'login': handler.inputs.login.val(),
                         'email': handler.inputs.email.val(),
-                        'password': handler.inputs.password.val()
+                        'password': handler.inputs.signup_password.val()
                     },
                     success: function (data) {
                         if(data == "1") {
@@ -170,7 +177,7 @@
 
         };
 
-        $(function(){handler.init(tools);});
+        handler.init(tools);
 
     });
 
