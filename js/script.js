@@ -32,7 +32,6 @@
                     email                   : $('#email'),
                     login                   : $('#login'),
                     password                : $('#password')
-
                 };
 
                 this.event(tools)
@@ -45,7 +44,7 @@
                     tools.connection();
                 });
 
-                this.buttons.sign_up_form.on('submit', function() {
+                this.buttons.sign_up_form.on('submit', function(e) {
                     tools.register();
                 });
 
@@ -138,6 +137,7 @@
 
             sign_up : function() {
                 tools.show_content(handler.load.sign_up);
+                handler.sign_up_form = $('#sign-up-form');
             },
 
             register : function() {
