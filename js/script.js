@@ -152,6 +152,7 @@
                     },
                     success: function (data) {
                         if(data == "1") {
+                            alert("inscription ok");
                             tools.show_content(handler.load.sign_up_confirm);
                         } else {
                             alert("problème à l'inscription !");

@@ -8,13 +8,10 @@ function userSignUp($login, $password)
 
 	if (isset($login) && isset($password)) {
 		$query = $dbconn->prepare('
-			SELECT password
-		   	FROM users
-		    WHERE username = ?');
-		$query = $dbconn->prepare('
 			INSERT INTO users (username, password)
  			VALUES (?,?)');
-		$query->execute(array($login, $password));
+		$md5password = md5($password);
+		$query->execute(array($login, $md5password));
 	}
 
     return $retval;

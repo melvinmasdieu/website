@@ -9,7 +9,9 @@ if (isset($_POST["action"])) {
 			include("./lib/c/connexion.php");
 			break;
 		case "signup":
+			echo "ok";
 			include("./lib/c/signup.php");
+			//éviter le rechargement de la page d'accueil en enlevant les submit
 			break;
 		case "load": 
 			if ($_POST != null && $_POST["pageId"] != null)
