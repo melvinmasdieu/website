@@ -44,7 +44,7 @@
                     tools.connection();
                 });
 
-                this.buttons.sign_up_form.on('submit', function(e) {
+                this.buttons.sign_up_form.on('submit', function() {
                     tools.register();
                 });
 
@@ -89,13 +89,13 @@
                             tools.show_header(handler.load.top_menu_connected);
                         }
                         else {
-                            /*noty({
+                            noty({
                              layout: 'bottomRight',
                              theme: 'relax', // or 'relax'
                              type: 'warning',
                              text: 'Erreur de connexion, login ou mot de passe incorrect !',
                              timeout: 500
-                             });*/
+                             });
                             alert("Erreur de connexion.");
                         }
                     }
