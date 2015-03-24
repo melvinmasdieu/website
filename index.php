@@ -9,9 +9,7 @@ if (isset($_POST["action"])) {
 			include("./lib/c/connexion.php");
 			break;
 		case "signup":
-			echo "ok";
 			include("./lib/c/signup.php");
-			//éviter le rechargement de la page d'accueil en enlevant les submit
 			break;
 		case "load": 
 			if ($_POST != null && $_POST["pageId"] != null)
@@ -40,10 +38,10 @@ if (isset($_POST["action"])) {
 					case 7: echo file_get_contents("./lib/v/topmenuconnected.html");break;
 					case 8: echo file_get_contents("./lib/v/topmenudisconnected.html");break;
 					case 9: echo file_get_contents("./lib/v/signupconfirm.html");break;
-					default: echo file_get_contents("./lib/v/404.html");break;
+					default: echo file_get_contents("./lib/v/404.html");
 			}
 			break;
-		default: echo file_get_contents("./lib/v/404.html");break;
+		default: echo file_get_contents("./lib/v/404.html");
 	}
 }
 else

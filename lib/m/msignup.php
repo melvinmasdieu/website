@@ -10,8 +10,9 @@ function userSignUp($login, $password)
 		$query = $dbconn->prepare('
 			INSERT INTO users (username, password)
  			VALUES (?,?)');
-		$md5password = md5($password);
-		$query->execute(array($login, $md5password));
+		$md5saltpassword = md5($login.sha1($password));
+		if ($query->execute(array($login, $md5saltpassword))) $retval = 1;
+		else die('Requête impossible: ' . $query->errorCode());
 	}
 
     return $retval;
