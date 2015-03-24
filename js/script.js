@@ -31,21 +31,34 @@
                     name                    : $('#name'),
                     email                   : $('#email'),
                     login                   : $('#login'),
-                    password                : $('#password')
+                    login_password          : $('#login-password'),
+                    signup_password         : $('#signup-password')
                 };
 
-                this.event(tools)
+                this.event(tools);
 
             },
 
             event : function(tools) {
 
-                this.buttons.login_form.on('submit', function () {
+                this.buttons.login_form.on('click', function () {
                     tools.connection();
                 });
 
-                this.buttons.sign_up_form.on('submit', function() {
+                this.inputs.login_password.on('keypress', function (e) {
+                    if (e.which == 13) {
+                        tools.connection();
+                    }
+                });
+
+                this.buttons.sign_up_form.on('click', function() {
                     tools.register();
+                });
+
+                this.inputs.signup_password.on('keypress', function (e) {
+                    if (e.which == 13) {
+                        tools.register();
+                    }
                 });
 
                 this.buttons.sign_up.on('keypress', function (e) {
@@ -81,7 +94,7 @@
                     data: {
                         'action': 'connection',
                         'login': handler.inputs.login.val(),
-                        'password': handler.inputs.password.val()
+                        'password': handler.inputs.login_password.val()
                     },
                     success: function (data) {
                         if (data == "1") {
@@ -89,13 +102,13 @@
                             tools.show_header(handler.load.top_menu_connected);
                         }
                         else {
-                            noty({
+                            /*noty({
                              layout: 'bottomRight',
                              theme: 'relax', // or 'relax'
                              type: 'warning',
                              text: 'Erreur de connexion, login ou mot de passe incorrect !',
                              timeout: 500
-                             });
+                             });*/
                             alert("Erreur de connexion.");
                         }
                     }
@@ -112,6 +125,7 @@
                     },
                     success: function (response) {
                         handler.gui.content.html(response);
+                        handler.init(tools);
                     }
                 });
             },
@@ -126,6 +140,7 @@
                     },
                     success: function (response) {
                         handler.gui.header.html(response);
+                        handler.init(tools);
                     }
                 });
             },
@@ -137,7 +152,6 @@
 
             sign_up : function() {
                 tools.show_content(handler.load.sign_up);
-                handler.sign_up_form = $('#sign-up-form');
             },
 
             register : function() {
@@ -147,14 +161,15 @@
                     data: {
                         'action': 'signup',
                         'login': handler.inputs.login.val(),
-                        'password': handler.inputs.password.val(),
-                        'email': handler.inputs.email.val()
+                        'email': handler.inputs.email.val(),
+                        'password': handler.inputs.signup_password.val()
                     },
                     success: function (data) {
                         if(data == "1") {
+                            alert("inscription ok");
                             tools.show_content(handler.load.sign_up_confirm);
                         } else {
-                            alert("problème à l'inscription !");
+                            alert(data);
                         }
                     }
                 });

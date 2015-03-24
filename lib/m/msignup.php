@@ -8,13 +8,11 @@ function userSignUp($login, $password)
 
 	if (isset($login) && isset($password)) {
 		$query = $dbconn->prepare('
-			SELECT password
-		   	FROM users
-		    WHERE username = ?');
-		$query = $dbconn->prepare('
 			INSERT INTO users (username, password)
  			VALUES (?,?)');
-		$query->execute(array($login, $password));
+		$md5saltpassword = md5($login.sha1($password));
+		if ($query->execute(array($login, $md5saltpassword))) $retval = 1;
+		else die('Requête impossible: ' . $query->errorCode());
 	}
 
     return $retval;

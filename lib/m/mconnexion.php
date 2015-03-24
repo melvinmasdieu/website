@@ -13,11 +13,14 @@ function userConnect($login, $password)
 		$query->execute(array($login));
 
 		$result = $query->fetch(PDO::FETCH_ASSOC);
-
-		if ($result["password"] == $password){
-			$_SESSION["connected"] = 1;
-			$retval = 1;
+		$md5saltpassword = md5($login.sha1($password));
+		if ($result) {
+			if ($result["password"] == $md5saltpassword){
+				$_SESSION["connected"] = 1;
+				$retval = 1;
+			}
 		}
+		else die('Requête impossible: ' . $query->errorCode());
 	}
 
     return $retval;
