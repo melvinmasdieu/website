@@ -22,6 +22,7 @@
                     content                 : $('#content')
                 };
                 this.buttons = {
+                    accueil                 : $('#accueil'),
                     login_form              : $('#login-form'),
                     sign_up_form            : $('#sign-up-form'),
                     sign_up                 : $('#signup'),
@@ -40,6 +41,10 @@
             },
 
             event : function(tools) {
+
+                this.buttons.accueil.on('click', function () {
+                   tools.accueil();
+                });
 
                 this.buttons.login_form.on('click', function () {
                     tools.connection();
@@ -173,6 +178,10 @@
                         }
                     }
                 });
+            },
+
+            accueil : function() {
+                location.reload();
             }
 
         };
