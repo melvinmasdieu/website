@@ -1,17 +1,20 @@
 <?php
 include("./lib/m/mdb.php");
 
-function getAllPathologies($login, $password)
+function getAllPathologies()
 {
 	$dbconn = dbConnect();
 	$query = $dbconn->prepare('
 		SELECT *
 		FROM patho');
 	$result = $query->execute();
-	if ($result) $pathologies = $result;
-	else die('Requête impossible: ' . $query->errorCode());
-print_r($pathologies);
-    return $pathologies;
+	if (!$result) die('Requête impossible: ' . $query->errorCode());
+	else {
+		$pathologies = $query->fetchAll();
+	}
+	foreach ($pathologies as $key => $value) {
+		echo "<tr><td>".$value['desc']."</td><td>".$value['type']."</td></tr>";
+	}
 }
 
 ?>
