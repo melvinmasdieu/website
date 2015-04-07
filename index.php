@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_POST["action"])) {
-	$action = $_POST["action"];
+	$action = htmlentities($_POST["action"]);
 	switch($action)
 	{
 		case "connection":
@@ -16,7 +16,7 @@ if (isset($_POST["action"])) {
 			break;
 		case "load": 
 			if ($_POST != null && $_POST["pageId"] != null)
-			$pageId = $_POST["pageId"];
+			$pageId = htmlentities($_POST["pageId"]);
 				switch($pageId) {
 
 					case 1: echo file_get_contents("./lib/v/header.html");break;

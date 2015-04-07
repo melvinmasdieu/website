@@ -1,8 +1,8 @@
 <?php
 include("./lib/m/mconnexion.php");
 
-$login = $_POST["login"];
-$password = $_POST["password"];
+$login = htmlentities($_POST["login"]);
+$password = htmlentities($_POST["password"]);
 
 echo userConnect($login, $password);
 
