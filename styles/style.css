@@ -2,6 +2,8 @@ body {
     margin: 0;
 }
 
+/* HEADER */
+
 #header {
     background-color: #D8D8D8;
     width: 100%;
@@ -23,6 +25,11 @@ body {
     text-decoration: none;
     text-align: center;
     padding-top: 10px;
+}
+
+#titre {
+    font-size: 25px;
+    margin-top: 5px;
 }
 
 .button-header {
@@ -53,4 +60,14 @@ body {
 .button-header:active {
     position: relative;
     top: 1px;
+}
+
+/* LOGIN */
+
+.login {
+    text-align: center;
+    background-color: #c3fcff;
+    margin: 10px 300px 10px 300px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
