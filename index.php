@@ -11,6 +11,9 @@ if (isset($_POST["action"])) {
 		case "signup":
 			include("./lib/c/signup.php");
 			break;
+		case "pathologies":
+			include("./lib/c/pathologies.php");
+			break;
 		case "load": 
 			if ($_POST != null && $_POST["pageId"] != null)
 			$pageId = $_POST["pageId"];
@@ -38,6 +41,7 @@ if (isset($_POST["action"])) {
 					case 7: echo file_get_contents("./lib/v/topmenuconnected.html");break;
 					case 8: echo file_get_contents("./lib/v/topmenudisconnected.html");break;
 					case 9: echo file_get_contents("./lib/v/signupconfirm.html");break;
+					case 10: echo file_get_contents("./lib/v/pathologies.html");break;
 					default: echo file_get_contents("./lib/v/404.html");
 			}
 			break;
