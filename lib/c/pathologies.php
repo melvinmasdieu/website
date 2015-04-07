@@ -1,5 +1,5 @@
 <?php
-include("./lib/m/msignup.php");
+include("./lib/m/mpathologies.php");
 
 echo getAllPathologies($login, $password);
 
