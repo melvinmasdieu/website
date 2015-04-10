@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<definitions name="flux" targetNamespace="urn:flux" xmlns:typens="urn:flux" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:typens0="http://127.0.0.1/fluxrss/serveur_soap.php">
+    <message name="getRss"/>
+    <message name="getRssResponse">
+        <part name="getRssReturn"/>
+    </message>
+    <portType name="flux_instancePortType">
+        <operation name="getRss">
+            <input message="typens:getRss"/>
+            <output  message="typens:getRssResponse"/>
+        </operation>
+    </portType>
+    <binding name="flux_instanceBinding" type="typens:flux_instancePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getRss">
+            <soap:operation soapAction="urn:flux_instanceAction"/>
+            <input>
+                <soap:body namespace="urn:flux" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:flux" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="fluxService">
+        <port name="flux_instancePort" binding="typens:flux_instanceBinding">
+            <soap:address location="http://127.0.0.1/fluxrss/serveur_soap.php"/>
+        </port>
+    </service>
+</definitions>
