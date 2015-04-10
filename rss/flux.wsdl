@@ -2,7 +2,7 @@
 
 <definitions name="flux" targetNamespace="urn:flux" xmlns:typens="urn:flux" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:typens0="http://127.0.0.1/fluxrss/serveur_soap.php">
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:typens0="http://127.0.0.1/rss/serveur_soap.php">
     <message name="getRss"/>
     <message name="getRssResponse">
         <part name="getRssReturn"/>
@@ -27,7 +27,7 @@
     </binding>
     <service name="fluxService">
         <port name="flux_instancePort" binding="typens:flux_instanceBinding">
-            <soap:address location="http://127.0.0.1/fluxrss/serveur_soap.php"/>
+            <soap:address location="http://localhost/rss/serveur_soap.php"/>
         </port>
     </service>
 </definitions>

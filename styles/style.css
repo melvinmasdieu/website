@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    min-width: 600px;
 }
 
 /* HEADER */
@@ -95,7 +96,7 @@ body {
     border-color: #666666;
     border-collapse: collapse;
     text-align: center;
-    margin: 5% 25%;
+    /*margin: 5% 25%;*/
 }
 #pathologies th {
     border-width: 1px;
@@ -110,4 +111,10 @@ body {
     border-style: solid;
     border-color: #666666;
     background-color: #ffffff;
+}
+
+.rss {
+    font-size: 80%;
+    max-width: 70%;
+    margin: 5% 25%;
 }

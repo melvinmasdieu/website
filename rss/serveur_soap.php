@@ -8,10 +8,11 @@ class FluxRss
 
 
         $xslDoc = new DOMDocument();
-        $xslDoc->load("flux.xsl");
+        $xslDoc->load("../lib/c/flux.xsl");
 
         $xmlDoc = new DOMDocument();
-        $xmlDoc->load("flux.xml");
+        $urlxml = file_get_contents('http://www.lemonde.fr/sante/rss_full.xml');
+        $xmlDoc->loadXml($urlxml);
 
         $proc = new XSLTProcessor();
         $proc->importStylesheet($xslDoc);
@@ -27,7 +28,7 @@ ini_set('soap.wsdl_cache_enabled', 0);
 
 //L'instanciation du SoapServer se déroule de la même manière que pour le client : voir la doc pour plus d'informations sur les
 //Différentes options disponibles
-$serversoap = new SoapServer("http://127.0.0.1/fluxrss/flux.wsdl");
+$serversoap = new SoapServer("./flux.wsdl");
 
 //Déclaration de la classe
 $serversoap->setClass("FluxRss");
@@ -36,3 +37,5 @@ $serversoap->setClass("FluxRss");
 //Ici, on dit très simplement que maintenant c'est à PHP de prendre la main pour servir le Service WEB : il s'occupera de l'encodage XML, des
 //Enveloppes SOAP, de gérer les demandes clientes.
 $serversoap->handle();
+
+?>

@@ -4,9 +4,9 @@ include("./lib/m/mdb.php");
 function userSignUp($login, $password, $email)
 {
 	$dbconn = dbConnect();
-	$retval = 0;
+	$retval = "Erreur pendant l'inscription";
 
-	if (isset($login) && isset($password)) {
+	if (isset($login) && isset($password) && isset($email) && $login != "" && $password != "" && $email != "") {
 		$query = $dbconn->prepare('
 			INSERT INTO users (username, password, email)
  			VALUES (?,?,?)');

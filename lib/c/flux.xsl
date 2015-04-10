@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet SYSTEM "xhtml11.dtd">
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                >
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:output
             method="html"
             encoding="utf-8"
-            doctype-public="-//W3C//DTD XHTML 1.1 //FR"
-            doctype-system="xhtml11.dtd"
             indent="yes"/>
 
     <xsl:template match="/">
@@ -15,8 +12,8 @@
     </xsl:template>
 
     <xsl:template match="channel">
-        <html>
-            <body>
+        <div>
+        <xsl:attribute name="class">rss</xsl:attribute>
                 <h1>
                     <xsl:value-of select="title"></xsl:value-of>
                 </h1>
@@ -38,8 +35,7 @@
                 <xsl:for-each select="item">
                     <xsl:apply-templates select="."></xsl:apply-templates>
                 </xsl:for-each>
-            </body>
-        </html>
+        </div>
     </xsl:template>
 <xsl:template match="item">
     <div>

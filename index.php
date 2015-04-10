@@ -66,8 +66,7 @@ else
 	}
 	else {
 			echo file_get_contents("./lib/v/headerconnected.html");
-			echo file_get_contents("./lib/v/rss.html");
-			//include du php web service
+			include("./lib/c/client_soap.php");
 			echo file_get_contents("./lib/v/footer.html");
 	}
 	

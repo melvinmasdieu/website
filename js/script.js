@@ -199,11 +199,22 @@
                         'action': 'pathologies'
                     },
                     success: function (data) {
-                        var htmlPathos = "<tr><th>Méridien</th><th>Pathologie</th><th>Symptôme</th></tr>"
-                        $.each (JSON.parse(data), function (i,e){
-                            htmlPathos += "<tr><td>"+e.mnom+"</td><td>"+e.pdesc+"</td><td>"+e.sdesc+"</td></tr>";
+                        //var htmlPathos = "<thead><tr><th>Méridien</th><th>Pathologie</th><th>Symptôme</th></tr></thead>"
+                        //$.each (JSON.parse(data), function (i,e){
+                        //   htmlPathos += "<tr><td>"+e.mnom+"</td><td>"+e.pdesc+"</td><td>"+e.sdesc+"</td></tr>";
+                        //});
+
+                        //handler.gui.pathologies.html(htmlPathos);
+                        $("#pathologies").dataTable({
+                            "data": JSON.parse(data),
+                            "columns": [
+                                { "data": "mnom" },
+                                { "data": "pdesc" },
+                                { "data": "sdesc" }
+                            ],
+                            "destroy":true
+                                
                         });
-                        handler.gui.pathologies.html(htmlPathos);
                     }
                 });
             }
