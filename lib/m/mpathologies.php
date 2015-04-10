@@ -3,18 +3,22 @@ include("./lib/m/mdb.php");
 
 function getAllPathologies()
 {
+	$result = "";
 	$dbconn = dbConnect();
 	$query = $dbconn->prepare('
-		SELECT *
-		FROM patho');
+		SELECT meridien.nom AS mnom, patho.desc AS pdesc, symptome.desc AS sdesc
+		FROM patho
+		INNER JOIN symptPatho ON patho.idP = symptPatho.idP
+		INNER JOIN symptome ON symptPatho.idS = symptome.idS
+		INNER JOIN meridien ON patho.mer = meridien.code
+		ORDER BY mnom, pdesc ASC;');
 	$result = $query->execute();
 	if (!$result) die('Requête impossible: ' . $query->errorCode());
 	else {
-		$pathologies = $query->fetchAll();
+		$pathologies = $query->fetchAll(PDO::FETCH_ASSOC);
 	}
-	foreach ($pathologies as $key => $value) {
-		echo "<tr><td>".$value['desc']."</td><td>".$value['type']."</td></tr>";
-	}
+
+	return json_encode($pathologies);
 }
 
 ?>

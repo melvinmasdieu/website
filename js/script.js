@@ -117,14 +117,7 @@
                             tools.show_header(handler.load.top_menu_connected);
                         }
                         else {
-                            /*noty({
-                             layout: 'bottomRight',
-                             theme: 'relax', // or 'relax'
-                             type: 'warning',
-                             text: 'Erreur de connexion, login ou mot de passe incorrect !',
-                             timeout: 500
-                             });*/
-                            alert("Erreur de connexion.");
+                            alert("Identifiants incorrects.");
                         }
                     }
                 });
@@ -206,7 +199,11 @@
                         'action': 'pathologies'
                     },
                     success: function (data) {
-                        handler.gui.pathologies.html(data);
+                        var htmlPathos = "<tr><th>Méridien</th><th>Pathologie</th><th>Symptôme</th></tr>"
+                        $.each (JSON.parse(data), function (i,e){
+                            htmlPathos += "<tr><td>"+e.mnom+"</td><td>"+e.pdesc+"</td><td>"+e.sdesc+"</td></tr>";
+                        });
+                        handler.gui.pathologies.html(htmlPathos);
                     }
                 });
             }

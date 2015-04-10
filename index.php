@@ -29,19 +29,28 @@ if (isset($_POST["action"])) {
 								echo file_get_contents("./lib/v/403.html");
 							}
 							break;
-					case 5: if ($_SESSION["connected"] == 1) {	
+					case 5: if (isset($_SESSION["connected"]) && $_SESSION["connected"] == 1) {
 								session_destroy();					
 								echo file_get_contents("./lib/v/disconnected.html");
 							}
-							else {
+							elseif (isset($_SESSION["connected"]) && $_SESSION["connected"] == 0) {
 								echo file_get_contents("./lib/v/403.html");
+							}
+							else {
+								echo file_get_contents("./lib/v/disconnected.html");
 							}
 							break;
 					case 6: echo file_get_contents("./lib/v/inscription.html");break;
 					case 7: echo file_get_contents("./lib/v/topmenuconnected.html");break;
 					case 8: echo file_get_contents("./lib/v/topmenudisconnected.html");break;
 					case 9: echo file_get_contents("./lib/v/signupconfirm.html");break;
-					case 10: echo file_get_contents("./lib/v/pathologies.html");break;
+					case 10:	if ($_SESSION["connected"] == 1) {		
+									echo file_get_contents("./lib/v/pathologies.html");
+								}
+								else {
+									echo file_get_contents("./lib/v/403.html");
+								}
+								break;
 					default: echo file_get_contents("./lib/v/404.html");
 			}
 			break;
@@ -57,7 +66,8 @@ else
 	}
 	else {
 			echo file_get_contents("./lib/v/headerconnected.html");
-			echo file_get_contents("./lib/v/connected.html");
+			echo file_get_contents("./lib/v/rss.html");
+			//include du php web service
 			echo file_get_contents("./lib/v/footer.html");
 	}
 	

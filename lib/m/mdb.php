@@ -7,8 +7,9 @@ function dbConnect()
 	$dbuser = "www";
 	$dbpwd = "www";
 	$dbbase = "webcpe";
+	$dbcharset = "UTF8";
 	
-	$host = $dbtype.":host=".$dbhost.";dbname=".$dbbase;
+	$host = $dbtype.":host=".$dbhost.";dbname=".$dbbase.";charset=".$dbcharset;
 
 	$dbconn = "";
 
